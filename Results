@@ -1,0 +1,28 @@
+//       __              _          _____        _           _       
+//       \ \ _   _ _ __ (_) ___  _ _\_   \_ __  (_) ___  ___| |_ ___ 
+//        \ \ | | | '_ \| |/ _ \| '__/ /\/ '_ \ | |/ _ \/ __| __/ __|
+//     /\_/ / |_| | | | | | (_) | /\/ /_ | | | || |  __/ (__| |_\__ \
+//     \___/ \__,_|_| |_|_|\___/|_\____/ |_| |_|/ |\___|\___|\__|___/ 
+//                                            |__/  SQL Island Results
+
+SELECT * FROM bewohner
+SELECT * FROM bewohner WHERE status = 'friedlich'
+SELECT * FROM bewohner WHERE status = 'friedlich' AND beruf = 'Waffenschmied'
+SELECT * FROM bewohner WHERE status = 'friedlich' AND beruf LIKE '%schmied'
+SELECT bewohnernr FROM bewohner WHERE name = 'Fremder'
+SELECT gold FROM bewohner WHERE bewohnernr = 20
+SELECT * FROM gegenstand WHERE besitzer IS NULL
+UPDATE gegenstand SET besitzer = 20 WHERE besitzer IS NULL
+SELECT * FROM gegenstand WHERE besitzer = 20
+SELECT * FROM bewohner WHERE status = 'friedlich' AND (beruf = 'Haendler' OR beruf = 'Kaufmann')
+UPDATE gegenstand SET besitzer = 15 WHERE gegenstand = 'Ring' OR gegenstand = 'Teekanne'
+UPDATE bewohner SET name = 'YOUR NAME' /** Name will be printed on the Certificate at the End */ WHERE bewohnernr = 20
+SELECT * FROM bewohner WHERE beruf = 'Baecker' ORDER BY gold DESC
+SELECT * FROM bewohner WHERE beruf = 'Pilot'
+SELECT name FROM bewohner WHERE bewohnernr = 13
+SELECT COUNT(*) FROM bewohner, dorf WHERE dorf.dorfnr = bewohner.dorfnr AND dorf.name = 'Zwiebelhausen' AND bewohner.geschlecht = 'w'
+SELECT bewohner.name FROM bewohner, dorf WHERE dorf.dorfnr = bewohner.dorfnr AND dorf.name = 'Zwiebelhausen' AND bewohner.geschlecht = 'w'
+SELECT SUM(bewohner.gold) FROM bewohner, dorf WHERE dorf.dorfnr = bewohner.dorfnr AND (bewohner.beruf = 'Haendler' OR bewohner.beruf = 'Kaufmann' OR bewohner.beruf = 'Baecker')
+SELECT status, AVG(bewohner.gold) FROM bewohner GROUP BY status ORDER BY AVG(bewohner.gold)
+DELETE FROM bewohner WHERE dorfnr = 3 AND geschlecht = 'w'
+UPDATE bewohner SET status = 'friedlich' WHERE beruf = 'Pilot'
